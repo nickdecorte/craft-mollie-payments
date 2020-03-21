@@ -4,6 +4,7 @@ namespace studioespresso\molliepayments\behaviours;
 use Craft;
 use studioespresso\molliepayments\elements\db\PaymentQuery;
 use studioespresso\molliepayments\elements\Payment;
+use studioespresso\molliepayments\MolliePayments;
 use yii\base\Behavior;
 
 /**
@@ -18,5 +19,10 @@ class CraftVariableBehavior extends Behavior
             Craft::configure($query, $criteria);
         }
         return $query;
+    }
+
+    public function paymentMethods()
+    {
+        return MolliePayments::getInstance()->mollie->getPaymentMethods();
     }
 }

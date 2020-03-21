@@ -71,4 +71,9 @@ class Mollie extends Component
         return $this->mollie->payments->get($orderId);
     }
 
+    public function getPaymentMethods()
+    {
+        return $this->mollie->methods->allActive();
+    }
+
 }
