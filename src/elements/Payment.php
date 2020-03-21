@@ -38,6 +38,7 @@ class Payment extends Element
      * @var string
      */
     public $email;
+    public $method;
     public $amount = 0;
     public $formId;
     public $paymentStatus;
