@@ -38,6 +38,7 @@ class Mollie extends Component
                 "currency" => $paymentForm->currency,
                 "value" => number_format($payment->amount, 2, '.', '') // You must send the correct number of decimals, thus we enforce the use of strings
             ],
+            "method" => $payment->method,
             "description" => $description,
             "redirectUrl" => UrlHelper::url("{$baseUrl}mollie-payments/payment/redirect", [
                 "order_id" => $payment->uid,
@@ -68,6 +69,11 @@ class Mollie extends Component
     public function getStatus($orderId)
     {
         return $this->mollie->payments->get($orderId);
+    }
+
+    public function getPaymentMethods()
+    {
+        return $this->mollie->methods->allActive();
     }
 
 }
