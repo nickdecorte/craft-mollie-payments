@@ -119,6 +119,7 @@ class PaymentController extends Controller
             $email = Craft::$app->request->getRequiredBodyParam('email');
             $amount = Craft::$app->request->getRequiredBodyParam('amount');
             $form = Craft::$app->request->getRequiredBodyParam('form');
+            $method = Craft::$app->request->getBodyParam('method');
 
             $form = Craft::$app->security->validateData($form);
 
@@ -132,6 +133,7 @@ class PaymentController extends Controller
             $payment->email = $email;
             $payment->amount = $amount;
             $payment->formId = $form;
+            $payment->method = $method;
             $payment->fieldLayoutId = $paymentForm->fieldLayout;
 
             if (!$paymentForm) {
